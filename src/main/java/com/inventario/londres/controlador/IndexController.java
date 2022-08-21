@@ -16,14 +16,9 @@ public class IndexController {
 	@Autowired
 	private IEquipoService equipoService;
 
-	@GetMapping({"/","/index"})
+	@GetMapping({"/","","/index"})
 	public String index() {
 		return "index";
-	}
-	
-	@GetMapping("")
-	public String redirect() {
-		return "redirect:login";
 	}
 	
 	@GetMapping("equipos-antiguos")
