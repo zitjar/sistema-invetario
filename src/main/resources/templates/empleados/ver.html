@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<main class="container mt-3">
+		<div class="card bg-ligth">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+					<ul class="list-group">
+						<li class="list-group-item active" th:text="${empleado.nombre}"></li>
+						<li class="list-group-item" th:text="${empleado.apellido}"></li>
+						<li class="list-group-item" th:text="${empleado.email}"></li>
+						<li class="list-group-item" th:text="${empleado.telefono}"></li>
+						<li class="list-group-item" th:text="${empleado.fechaNacimiento}"></li>
+						<li class="list-group-item" th:text="${empleado.fechaIngreso}"></li>
+						<li class="list-group-item" th:text="${empleado.sexo}"></li>
+					</ul>
+				</div>
+		</div>
+	</main>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

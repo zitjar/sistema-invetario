@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<main class="container">
+	<div class="py-4 ml-5 mr-5">
+		<div class="card bg-dark">
+			<div class="card-header text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+			<section th:replace="layout/layout ::mensajes"></section>
+				<h4 class="card-title text-end">
+				</h4>
+				
+				<div class="table-responsive-lg">
+				<table id="table_id" class="display table table-dark table-striped">
+					<thead>
+						<tr>
+						<th class="text-white">Id Equipop</th>
+						<th class="text-white">Modelo</th>
+						<th class="text-white">Marca</th>
+						<th class="text-white">Ram</th>
+						<th class="text-white">Procesador</th>
+						<th class="text-white">Almacenamineto</th>
+						<th class="text-white">Tipo</th>
+						<th class="text-white">Fecha de compra</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="equipo : ${equipos}">
+						<td class="text-white" th:text="${equipo.id}"></td>
+						<td class="text-white" th:text="${equipo.modelo}"></td>
+						<td class="text-white" th:text="${equipo.marca}"></td>
+						<td class="text-white" th:text="${equipo.ram}"></td>
+						<td class="text-white" th:text="${equipo.procesador}"></td>
+						<td class="text-white" th:text="${equipo.almacenamiento}"></td>
+						<td class="text-white" th:text="${equipo.tipo}"></td>
+						<td class="text-white" th:text="${equipo.fechaCompra}"></td>
+					</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+	
+	<script type="text/javascript">
+	let table = new DataTable('#example', {
+	    // options
+	});
+	</script>
+</body>
+</html>

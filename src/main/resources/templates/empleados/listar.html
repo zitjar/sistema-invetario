@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<main class="container">
+	<div class="py-4 ml-5 mr-5">
+		<div class="card bg-dark">
+			<div class="card-header text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+			<section th:replace="layout/layout ::mensajes"></section>
+				<h4 class="card-title text-end">
+				<a th:href="@{/empleados/form}" class="btn btn-primary"><i class="fa fa-solid fa-circle-plus"></i></a>
+				
+				<a th:href="@{/empleados/exportarPDF}" class="btn btn-danger"><i class="fa fa-solid fa-file-pdf"></i></a>
+				
+				<a th:href="@{/empleados/exportarExcel}" class="btn btn-success"><i class="fa fa-solid fa-file-excel"></i></a>
+				</h4>
+				
+				<table class="table table-dark table-striped table-responsive">
+					<thead>
+						<tr>
+						<th class="text-white">Número empleado</th>
+						<th class="text-white">Nombre</th>
+						<th class="text-white">Apellido</th>
+						<th class="text-white">Email</th>
+						<th class="text-white">Telefono</th>
+						<th class="text-white">Fecha Ingreso</th>
+						<th colspan="3" class="text-white">Acciones</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="empleado : ${empleados}">
+						<td class="text-white" th:text="${empleado.id}"></td>
+						<td class="text-white" th:text="${empleado.nombre}"></td>
+						<td class="text-white" th:text="${empleado.apellido}"></td>
+						<td class="text-white" th:text="${empleado.email}"></td>
+						<td class="text-white" th:text="${empleado.telefono}"></td>
+						<td class="text-white" th:text="${empleado.FechaIngreso}"></td>
+						<td><a class="btn btn-info btn-sm" th:href="@{/empleados/ver/} + ${empleado.id}">Detalle</a></td>
+						<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-warning btn-sm" th:href="@{/empleados/form/}+${empleado.id}">Editar</a></td>
+						<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger btn-sm" th:href="@{/empleados/eliminar/}+${empleado.id}" onClick="return confirm('¿Estas seguro de eliminar al empleado?');">Elimnar</a></td>
+					</tr>
+					</tbody>
+				</table>
+				<nav th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+	</div>
+	</main>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

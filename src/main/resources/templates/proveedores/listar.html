@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<main class="container">
+	<div class="py-4 ml-5 mr-5">
+		<div class="card bg-dark">
+			<div class="card-header text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+			<section th:replace="layout/layout ::mensajes"></section>
+				<h4 class="card-title text-end">
+				<a th:href="@{/proveedores/form}" class="btn btn-primary"><i class="fa fa-solid fa-circle-plus"></i></a>
+				
+				<a th:href="@{/proveedores/exportarPDF}" class="btn btn-danger"><i class="fa fa-solid fa-file-pdf"></i></a>
+				
+				<a th:href="@{/proveedores/exportarExcel}" class="btn btn-success"><i class="fa fa-solid fa-file-excel"></i></a>
+				</h4>
+				
+				<div class="table-responsive-lg">
+				<table class="table table-dark table-striped">
+					<thead>
+						<tr>
+						<th class="text-white">Id proveedor</th>
+						<th class="text-white">Nombre</th>
+						<th class="text-white">RFC</th>
+						<th class="text-white">Dirección              </th>
+						<th class="text-white">Email</th>
+						<th class="text-white">Telefono</th>
+						<th class="text-white">Representante Legal</th>
+						<th colspan="3" class="text-white">Acciones</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="proveedor : ${proveedores}">
+						<td class="text-white" th:text="${proveedor.id}"></td>
+						<td class="text-white" th:text="${proveedor.nombre}"></td>
+						<td class="text-white" th:text="${proveedor.rfc}"></td>
+						<td class="text-white" th:text="${proveedor.direccion}"></td>
+						<td class="text-white" th:text="${proveedor.email}"></td>
+						<td class="text-white" th:text="${proveedor.telefono}"></td>
+						<td class="text-white" th:text="${proveedor.representanteLegal}"></td>
+						<td><a class="btn btn-info btn-sm" th:href="@{/proveedores/ver/} + ${proveedor.id}">Detalle</a></td>
+						<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-warning btn-sm" th:href="@{/proveedores/form/}+${proveedor.id}">Editar</a></td>
+						<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger btn-sm" th:href="@{/proveedores/eliminar/}+${proveedor.id}" onClick="return confirm('¿Estas seguro de eliminar al proveedor?');">Elimnar</a></td>
+					</tr>
+					</tbody>
+				</table>
+				</div>
+				
+				<nav th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+	</div>
+	</main>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

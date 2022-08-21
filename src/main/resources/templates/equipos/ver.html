@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<main class="container mt-3">
+	<a class="btn btn-primary mb-3" th:href="@{/equipos/form/}+${equipo.id}">Editar</a>
+		<div class="card bg-ligth">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+					<ul class="list-group">
+						<li class="list-group-item active" th:text="${equipo.modelo}"></li>
+						<li class="list-group-item" th:text="${equipo.marca}"></li>
+						<li class="list-group-item" th:text="${equipo.ram}"></li>
+						<li class="list-group-item" th:text="${equipo.procesador}"></li>
+						<li class="list-group-item" th:text="${equipo.almacenamiento}"></li>
+						<li class="list-group-item" th:text="${equipo.tipo}"></li>
+						<li class="list-group-item" th:text="${equipo.fechaCompra}"></li>
+						<li th:if="${equipo.empleado}" class="list-group-item" th:text="${equipo.empleado.nombre}+' '+${equipo.empleado.apellido}"></li>
+					</ul>
+				</div>
+		</div>
+	</main>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

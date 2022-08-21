@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<main class="container mt-3">
+	<a class="btn btn-primary mb-3" th:href="@{/proveedores/form/}+${proveedor.id}">Editar</a>
+		<div class="card bg-ligth">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+					<ul class="list-group">
+						<li class="list-group-item active" th:text="${proveedor.nombre}"></li>
+						<li class="list-group-item" th:text="${proveedor.rfc}"></li>
+						<li class="list-group-item" th:text="${proveedor.direccion}"></li>
+						<li class="list-group-item" th:text="${proveedor.telefono}"></li>
+						<li class="list-group-item" th:text="${proveedor.email}"></li>
+						<li class="list-group-item" th:text="${proveedor.representanteLegal}"></li>
+						<li class="list-group-item" th:text="${proveedor.productos}"></li>
+					</ul>
+				</div>
+		</div>
+	</main>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

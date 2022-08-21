@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<main class="container mt-3">
+		<div class="row">
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center" th:text="${titulo}"></h1>
+				<div class="card-body">
+					<form th:action="@{/equipos/form}" th:object="${equipo}"
+						method="POST">
+						<input type="hidden" th:field="*{id}" th:value="${equipo.id}">
+						<div class="form-group">
+							<label>Modelo: </label> <input type="text" th:field="*{modelo}"
+								class="form-control" th:errorClass="'form-control alert-danger'">
+							<small class="form-text text-danger"
+								th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></small>
+						</div>
+						<div class="form-group">
+							<label>Marca: </label> <input type="text" th:field="*{marca}"
+								class="form-control" th:errorClass="'form-control alert-danger'">
+							<small class="form-text text-danger"
+								th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></small>
+						</div>
+						<div class="form-group">
+							<label>Ram: </label> <input type="text" th:field="*{ram}"
+								class="form-control" th:errorClass="'form-control alert-danger'">
+							<small class="form-text text-danger"
+								th:if="${#fields.hasErrors('ram')}" th:errors="*{ram}"></small>
+						</div>
+						<div class="form-group">
+							<label>Procesador: </label> <input type="text"
+								th:field="*{procesador}" class="form-control"
+								th:errorClass="'form-control alert-danger'"> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('procesador')}"
+								th:errors="*{procesador}"></small>
+						</div>
+						<div class="form-group">
+							<label>Almacenamiento: </label> <input type="text"
+								th:field="*{almacenamiento}" class="form-control"
+								th:errorClass="'form-control alert-danger'"> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('almacenamiento')}"
+								th:errors="*{almacenamiento}"></small>
+						</div>
+						<div class="form-group">
+							<label>Tipo de equipo: </label> <select class="form-select" th:field="*{tipo}">
+								<option value="" selected disabled>--Selecciona una opcion--</option>
+								<option th:value="Laptop">Laptop</option>
+								<option th:value="Escritorio">Escritorio</option>
+								<option th:value="Workstation">Workstation</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Fecha de compra: </label> <input type="date"
+								th:field="*{fechaCompra}" class="form-control"
+								th:errorClass="'form-control alert-danger'"> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('fechaCompra')}"
+								th:errors="*{fechaCompra}"></small>
+						</div>
+						<div class="form-group">
+							<label>Usuario asignado: </label> <select class="form-select" th:field="*{empleado}">
+							<option value="" selected>--Seleccionar una opción--</option>
+							<option th:each="employee : ${empleados}" th:value="${employee.id}" th:text="${employee.nombre}+' '+${employee.apellido}"></option>
+							</select>
+						</div>
+						<div class="box-footer">
+							<input type="submit" value="Guardar" class="btn btn-primary mt-2">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
