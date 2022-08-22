@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head">
 <meta charset="UTF-8">
 </head>
 <body>
 	<header th:replace="layout/layout :: header"></header>
-	
+	<main class="container">
+		<canvas id="myChart" width="300" height="150"></canvas>
+	</main>
+
+
 	<footer th:replace="layout/layout :: footer"></footer>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script type="text/javascript" src="/js/bar.js"></script>
 </body>
+
 </html>
